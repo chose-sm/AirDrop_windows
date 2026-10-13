@@ -15,8 +15,6 @@ Send files between a Windows PC and an iPhone over your home Wi-Fi. Nothing need
 
 If you don't have Python installed, download **[AirDrop-Windows.zip](https://github.com/chose-sm/AirDrop_windows/releases/latest/download/AirDrop-Windows.zip)**. The link always points to the latest version (see [Releases](https://github.com/chose-sm/AirDrop_windows/releases) for the changelog). It includes the official portable Python from python.org (digitally signed by the Python Software Foundation), so nothing needs to be installed. Extract the ZIP anywhere and double-click `start.bat`. The rest of the steps above stay the same. The firewall prompt will mention `python.exe`; allow it for private networks.
 
-To build the package yourself: `powershell -ExecutionPolicy Bypass -File build_release.ps1 -Version 1.0.0`. The ZIP is created in the `dist` folder.
-
 ## Usage
 
 | Direction | How |
@@ -50,3 +48,17 @@ Access is protected by a random key contained in the QR code and stored in `F:\A
 ## Language
 
 The interface is available in Slovak and English. Switch it with the selector next to the AirDrop title. Each device (PC and iPhone) remembers its own choice; on first launch the language follows the device setting.
+
+## Building the release (for developers)
+
+Regular users don't need this. Just download the ZIP using the link above.
+
+To build the portable package from source, run in the project folder:
+
+```
+powershell -ExecutionPolicy Bypass -File build_release.ps1 -Version 1.1.0
+```
+
+- The result is `dist\AirDrop-Windows.zip`. Upload it to a new GitHub release under exactly this name, so the download link in this README keeps pointing to the latest version.
+- `-Version` only sets the version in the folder name inside the ZIP (e.g. `AirDrop-Windows-v1.1.0`).
+- The script downloads the official portable Python from python.org (`-PythonVersion`, default `3.14.8`) and checks the digital signatures of all its files.

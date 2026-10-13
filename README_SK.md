@@ -15,8 +15,6 @@ Posielanie súborov medzi Windows PC a iPhonom cez domácu Wi-Fi. Na iPhone sa n
 
 Ak nemáš nainštalovaný Python, stiahni si **[AirDrop-Windows.zip](https://github.com/chose-sm/AirDrop_windows/releases/latest/download/AirDrop-Windows.zip)**. Odkaz vždy vedie na najnovšiu verziu (prehľad zmien nájdeš v sekcii [Releases](https://github.com/chose-sm/AirDrop_windows/releases)). Obsahuje oficiálny prenosný Python z python.org, digitálne podpísaný organizáciou Python Software Foundation, takže netreba nič inštalovať. ZIP rozbaľ kamkoľvek a dvakrát klikni na `start.bat`. Ostatné kroky vyššie zostávajú rovnaké. Firewall sa pri prvom spustení opýta na `python.exe`; povoľ mu súkromné siete.
 
-Balík si môžeš zostaviť aj sám: `powershell -ExecutionPolicy Bypass -File build_release.ps1 -Version 1.0.0`. ZIP sa vytvorí v priečinku `dist`.
-
 ## Použitie
 
 | Smer | Ako |
@@ -50,3 +48,17 @@ Prístup chráni náhodný kľúč v QR kóde, uložený v `F:\AirDrop\.token`. 
 ## Jazyk
 
 Rozhranie je v slovenčine a angličtine. Prepneš ho prepínačom vedľa nápisu AirDrop. Každé zariadenie (PC aj iPhone) si pamätá svoju voľbu a pri prvom spustení sa jazyk zvolí podľa nastavenia zariadenia.
+
+## Zostavenie balíka (pre vývojárov)
+
+Bežný používateľ toto nepotrebuje. Stačí mu stiahnuť ZIP cez odkaz vyššie.
+
+Prenosný balík zo zdrojového kódu zostavíš v priečinku projektu príkazom:
+
+```
+powershell -ExecutionPolicy Bypass -File build_release.ps1 -Version 1.1.0
+```
+
+- Výsledok je `dist\AirDrop-Windows.zip`. Nahraj ho do nového vydania na GitHube presne pod týmto názvom, aby odkaz na stiahnutie v tomto návode stále viedol na najnovšiu verziu.
+- `-Version` určuje len číslo verzie v názve priečinka vo vnútri ZIP-u (napr. `AirDrop-Windows-v1.1.0`).
+- Skript stiahne oficiálny prenosný Python z python.org (`-PythonVersion`, predvolene `3.14.8`) a overí digitálne podpisy všetkých jeho súborov.
