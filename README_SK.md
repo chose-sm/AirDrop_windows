@@ -11,6 +11,12 @@ Posielanie súborov medzi Windows PC a iPhonom cez domácu Wi-Fi. Na iPhone sa n
 3. V prehliadači na PC sa otvorí okno s QR kódom. Naskenuj ho fotoaparátom iPhonu.
 4. Odporúčam: na iPhone v Safari ťukni na **Zdieľať → Pridať na plochu**. Potom AirDrop otvoríš ako aplikáciu, bez skenovania.
 
+### Voliteľné: prenosná verzia (bez Pythonu)
+
+Ak nemáš nainštalovaný Python, stiahni si `AirDrop-Windows-vX.Y.Z.zip` zo sekcie [Releases](https://github.com/chose-sm/AirDrop_windows/releases/latest). Obsahuje oficiálny prenosný Python z python.org, digitálne podpísaný organizáciou Python Software Foundation, takže netreba nič inštalovať. ZIP rozbaľ kamkoľvek a dvakrát klikni na `start.bat`. Ostatné kroky vyššie zostávajú rovnaké. Firewall sa pri prvom spustení opýta na `python.exe`; povoľ mu súkromné siete.
+
+Balík si môžeš zostaviť aj sám: `powershell -ExecutionPolicy Bypass -File build_release.ps1 -Version 1.0.0`. ZIP sa vytvorí v priečinku `dist`.
+
 ## Použitie
 
 | Smer | Ako |
