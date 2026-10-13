@@ -20,7 +20,7 @@ Send files between a Windows PC and an iPhone over your home Wi-Fi. Nothing need
 
 Files are stored in `F:\AirDrop\`:
 - `Prijate` contains files received from the iPhone,
-- `Na iPhone` contains files ready for the iPhone.
+- `Odoslane` contains files ready for the iPhone.
 
 ## Settings (environment variables)
 

@@ -20,7 +20,7 @@ Posielanie súborov medzi Windows PC a iPhonom cez domácu Wi-Fi. Na iPhone sa n
 
 Súbory sú v `F:\AirDrop\`:
 - `Prijate` obsahuje súbory z iPhonu,
-- `Na iPhone` obsahuje súbory pripravené pre iPhone.
+- `Odoslane` obsahuje súbory pripravené pre iPhone.
 
 ## Nastavenia (premenné prostredia)
 

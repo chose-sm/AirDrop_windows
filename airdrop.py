@@ -22,7 +22,7 @@ BASE = Path(__file__).resolve().parent
 DATA = Path(os.environ.get("AIRDROP_DIR", r"F:\AirDrop"))
 BOXES = {
     "inbox": DATA / "Prijate",     # z iPhonu do PC
-    "outbox": DATA / "Na iPhone",  # z PC do iPhonu
+    "outbox": DATA / "Odoslane",   # z PC do mobilu
 }
 CHUNK = 1024 * 1024
 LOCK = threading.Lock()
@@ -238,7 +238,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send(404)
 
     def upload(self, q):
-        # z PC ide subor do "Na iPhone", z iPhonu do "Prijate"
+        # z PC ide subor do "Odoslane", z iPhonu do "Prijate"
         folder = BOXES["outbox" if self.local else "inbox"]
         name = safe_name(q.get("name", "subor"))
         try:
@@ -273,6 +273,9 @@ class Handler(BaseHTTPRequestHandler):
 
 def main():
     global TOKEN
+    old_outbox = DATA / "Na iPhone"  # nazov z predchadzajucej verzie
+    if old_outbox.is_dir() and not BOXES["outbox"].exists():
+        old_outbox.rename(BOXES["outbox"])
     for folder in BOXES.values():
         folder.mkdir(parents=True, exist_ok=True)
     for stale in DATA.glob("*/.*.part"):
