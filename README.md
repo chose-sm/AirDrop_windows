@@ -1,44 +1,46 @@
-# AirDrop pre Windows
+# AirDrop for Windows
 
-Posielanie súborov medzi Windows PC a iPhonom cez domácu Wi-Fi. Na iPhone sa nič neinštaluje, stačí Safari.
+**English** | [Slovenčina](README_SK.md)
 
-## Spustenie
+Send files between a Windows PC and an iPhone over your home Wi-Fi. Nothing needs to be installed on the iPhone; Safari is enough.
 
-1. Dvojklik na `start.bat` (alebo `python airdrop.py`). Potrebuješ Python 3.8 alebo novší, nič ďalšie netreba inštalovať.
-2. Keď sa Windows pri prvom spustení opýta na bránu firewall, povoľ prístup pre **súkromné siete**.
-3. V prehliadači na PC sa otvorí okno s QR kódom. Naskenuj ho fotoaparátom iPhonu.
-4. Odporúčam: na iPhone v Safari ťukni na **Zdieľať → Pridať na plochu**. Potom AirDrop otvoríš ako aplikáciu, bez skenovania.
+## Getting started
 
-## Použitie
+1. Double-click `start.bat` (or run `python airdrop.py`). You need Python 3.8 or newer; nothing else has to be installed.
+2. When Windows asks about the firewall on the first run, allow access for **private networks**.
+3. A browser window with a QR code opens on the PC. Scan it with the iPhone camera.
+4. Recommended: in Safari on the iPhone, tap **Share → Add to Home Screen**. You can then open AirDrop like an app, without scanning.
 
-| Smer | Ako |
+## Usage
+
+| Direction | How |
 |---|---|
-| PC → iPhone | Pretiahni súbory do okna na PC (alebo Ctrl+V). Na iPhone ich potom stiahneš cez **Stiahnuť** (uloží sa do Súborov), fotky a videá cez **Otvoriť** a podržanie prsta → **Pridať do Fotiek**. |
-| iPhone → PC | Ťukni na **Poslať do PC** a vyber fotky alebo súbory. |
+| PC → iPhone | Drag files into the window on the PC (or press Ctrl+V). On the iPhone, tap **Download** to save a file to the Files app. For photos and videos, tap **Open**, press and hold, then choose **Add to Photos**. |
+| iPhone → PC | Tap **Send to PC** and pick photos or files. |
 
-Súbory sú v `F:\AirDrop\`:
-- `Prijate` obsahuje súbory z iPhonu,
-- `Na iPhone` obsahuje súbory pripravené pre iPhone.
+Files are stored in `F:\AirDrop\`:
+- `Prijate` contains files received from the iPhone,
+- `Na iPhone` contains files ready for the iPhone.
 
-## Nastavenia (premenné prostredia)
+## Settings (environment variables)
 
-- `AIRDROP_PORT` je port, predvolene `8765`.
-- `AIRDROP_DIR` je priečinok so súbormi, predvolene `F:\AirDrop`.
-- Spustenie s `--no-browser` neotvorí prehliadač.
+- `AIRDROP_PORT` sets the port, `8765` by default.
+- `AIRDROP_DIR` sets the folder for files, `F:\AirDrop` by default.
+- Running with `--no-browser` does not open the browser.
 
-## Bezpečnosť
+## Security
 
-Prístup chráni náhodný kľúč v QR kóde, uložený v `F:\AirDrop\.token`. Keď ho zmažeš, vygeneruje sa nový a starý odkaz prestane fungovať. Prenos ide nešifrovane cez HTTP v lokálnej sieti, preto ho používaj len doma alebo na dôveryhodnej Wi-Fi.
+Access is protected by a random key contained in the QR code and stored in `F:\AirDrop\.token`. If you delete it, a new key is generated and the old link stops working. Transfers are unencrypted HTTP within your local network, so use it only at home or on a trusted Wi-Fi.
 
-## Riešenie problémov
+## Troubleshooting
 
-- **iPhone sa nepripojí:** obe zariadenia musia byť na rovnakej Wi-Fi a sieť vo Windows musí byť nastavená ako *Súkromná*. Pravidlo firewallu môžeš pridať aj ručne (PowerShell ako správca):
+- **The iPhone can't connect:** both devices must be on the same Wi-Fi, and the network in Windows must be set to *Private*. You can also add the firewall rule manually (PowerShell as administrator):
   ```
-  New-NetFirewallRule -DisplayName "AirDrop pre Windows" -Direction Inbound -Protocol TCP -LocalPort 8765 -Action Allow -Profile Private
+  New-NetFirewallRule -DisplayName "AirDrop for Windows" -Direction Inbound -Protocol TCP -LocalPort 8765 -Action Allow -Profile Private
   ```
-- **Viac sieťových adries (VPN, Hyper-V):** pod QR kódom vyber správnu adresu.
-- **Fotky prídu ako .HEIC:** v iPhone nastav *Nastavenia → Fotoaparát → Formáty → Najkompatibilnejšie*.
+- **Multiple network addresses (VPN, Hyper-V):** pick the correct address below the QR code.
+- **Photos arrive as .HEIC:** on the iPhone, set *Settings → Camera → Formats → Most Compatible*.
 
-## Jazyk
+## Language
 
-Rozhranie je v slovenčine a angličtine. Prepneš ho prepínačom vedľa nápisu AirDrop. Každé zariadenie (PC aj iPhone) si pamätá svoju voľbu a pri prvom spustení sa jazyk zvolí podľa nastavenia zariadenia.
+The interface is available in Slovak and English. Switch it with the selector next to the AirDrop title. Each device (PC and iPhone) remembers its own choice; on first launch the language follows the device setting.
