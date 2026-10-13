@@ -22,19 +22,29 @@ Ak nemáš nainštalovaný Python, stiahni si **[AirDrop-Windows.zip](https://gi
 | PC → iPhone | Pretiahni súbory do okna na PC (alebo Ctrl+V). Na iPhone ich potom stiahneš cez **Stiahnuť** (uloží sa do Súborov), fotky a videá cez **Otvoriť** a podržanie prsta → **Pridať do Fotiek**. |
 | iPhone → PC | Ťukni na **Poslať do PC** a vyber fotky alebo súbory. |
 
-Súbory sú v `F:\AirDrop\`:
+Súbory sú v priečinku AirDrop, predvolene `Stiahnuté\AirDrop` (presnú cestu vidíš hore v okne na PC):
 - `Prijate` obsahuje súbory z iPhonu,
 - `Odoslane` obsahuje súbory pripravené pre iPhone.
+
+### Vlastný priečinok
+
+Súbory si môžeš ukladať kamkoľvek. Vedľa `airdrop.py` vytvor textový súbor `airdrop_folder.txt` a do prvého riadku napíš cestu k priečinku, napríklad:
+
+```
+D:\AirDrop
+```
+
+Potom AirDrop reštartuj. Ak priečinok neexistuje, vytvorí sa automaticky.
 
 ## Nastavenia (premenné prostredia)
 
 - `AIRDROP_PORT` je port, predvolene `8765`.
-- `AIRDROP_DIR` je priečinok so súbormi, predvolene `F:\AirDrop`.
+- `AIRDROP_DIR` je priečinok so súbormi a má prednosť pred `airdrop_folder.txt`.
 - Spustenie s `--no-browser` neotvorí prehliadač.
 
 ## Bezpečnosť
 
-Prístup chráni náhodný kľúč v QR kóde, uložený v `F:\AirDrop\.token`. Keď ho zmažeš, vygeneruje sa nový a starý odkaz prestane fungovať. Prenos ide nešifrovane cez HTTP v lokálnej sieti, preto ho používaj len doma alebo na dôveryhodnej Wi-Fi.
+Prístup chráni náhodný kľúč v QR kóde, uložený v súbore `.token` v priečinku AirDrop. Keď ho zmažeš, vygeneruje sa nový a starý odkaz prestane fungovať. Prenos ide nešifrovane cez HTTP v lokálnej sieti, preto ho používaj len doma alebo na dôveryhodnej Wi-Fi.
 
 ## Riešenie problémov
 

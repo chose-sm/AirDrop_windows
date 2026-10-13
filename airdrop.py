@@ -19,7 +19,21 @@ from pathlib import Path
 
 PORT = int(os.environ.get("AIRDROP_PORT", "8765"))
 BASE = Path(__file__).resolve().parent
-DATA = Path(os.environ.get("AIRDROP_DIR", r"F:\AirDrop"))
+
+
+def data_dir():
+    """Priecinok so subormi: AIRDROP_DIR, potom airdrop_folder.txt, inak Stiahnute\\AirDrop."""
+    if os.environ.get("AIRDROP_DIR"):
+        return Path(os.environ["AIRDROP_DIR"])
+    cfg = BASE / "airdrop_folder.txt"
+    if cfg.exists():
+        line = cfg.read_text(encoding="utf-8-sig").strip().strip('"')
+        if line:
+            return Path(os.path.expandvars(line))
+    return Path.home() / "Downloads" / "AirDrop"
+
+
+DATA = data_dir()
 BOXES = {
     "inbox": DATA / "Prijate",     # z iPhonu do PC
     "outbox": DATA / "Odoslane",   # z PC do mobilu
@@ -276,8 +290,13 @@ def main():
     old_outbox = DATA / "Na iPhone"  # nazov z predchadzajucej verzie
     if old_outbox.is_dir() and not BOXES["outbox"].exists():
         old_outbox.rename(BOXES["outbox"])
-    for folder in BOXES.values():
-        folder.mkdir(parents=True, exist_ok=True)
+    try:
+        for folder in BOXES.values():
+            folder.mkdir(parents=True, exist_ok=True)
+    except OSError as e:
+        print(f"Priečinok {DATA} sa nedá vytvoriť / Cannot create folder: {e}")
+        print("Skontroluj airdrop_folder.txt / Check airdrop_folder.txt")
+        return
     for stale in DATA.glob("*/.*.part"):
         stale.unlink(missing_ok=True)
     TOKEN = load_token()

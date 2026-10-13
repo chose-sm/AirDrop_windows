@@ -22,19 +22,29 @@ If you don't have Python installed, download **[AirDrop-Windows.zip](https://git
 | PC → iPhone | Drag files into the window on the PC (or press Ctrl+V). On the iPhone, tap **Download** to save a file to the Files app. For photos and videos, tap **Open**, press and hold, then choose **Add to Photos**. |
 | iPhone → PC | Tap **Send to PC** and pick photos or files. |
 
-Files are stored in `F:\AirDrop\`:
+Files are stored in the AirDrop folder, by default `Downloads\AirDrop` (the exact path is shown at the top of the window on the PC):
 - `Prijate` contains files received from the iPhone,
 - `Odoslane` contains files ready for the iPhone.
+
+### Choosing your own folder
+
+You can keep the files anywhere you like. Create a text file named `airdrop_folder.txt` next to `airdrop.py` and write the folder path on the first line, for example:
+
+```
+D:\AirDrop
+```
+
+Restart AirDrop. The folder is created automatically if it doesn't exist.
 
 ## Settings (environment variables)
 
 - `AIRDROP_PORT` sets the port, `8765` by default.
-- `AIRDROP_DIR` sets the folder for files, `F:\AirDrop` by default.
+- `AIRDROP_DIR` sets the folder for files and takes precedence over `airdrop_folder.txt`.
 - Running with `--no-browser` does not open the browser.
 
 ## Security
 
-Access is protected by a random key contained in the QR code and stored in `F:\AirDrop\.token`. If you delete it, a new key is generated and the old link stops working. Transfers are unencrypted HTTP within your local network, so use it only at home or on a trusted Wi-Fi.
+Access is protected by a random key contained in the QR code and stored in the `.token` file inside the AirDrop folder. If you delete it, a new key is generated and the old link stops working. Transfers are unencrypted HTTP within your local network, so use it only at home or on a trusted Wi-Fi.
 
 ## Troubleshooting
 
