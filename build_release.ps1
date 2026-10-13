@@ -10,7 +10,7 @@ $dist = Join-Path $root "dist"
 $cache = Join-Path $dist "cache"
 $name = "AirDrop-Windows-v$Version"
 $stage = Join-Path $dist $name
-$zip = Join-Path $dist "$name.zip"
+$zip = Join-Path $dist "AirDrop-Windows.zip"  # stabilny nazov -> odkaz releases/latest/download/AirDrop-Windows.zip
 
 New-Item -ItemType Directory -Force $cache | Out-Null
 $pyZip = Join-Path $cache "python-$PythonVersion-embed-amd64.zip"

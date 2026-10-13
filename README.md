@@ -13,7 +13,7 @@ Send files between a Windows PC and an iPhone over your home Wi-Fi. Nothing need
 
 ### Optional: portable version (no Python needed)
 
-If you don't have Python installed, download `AirDrop-Windows-vX.Y.Z.zip` from [Releases](https://github.com/chose-sm/AirDrop_windows/releases/latest). It includes the official portable Python from python.org (digitally signed by the Python Software Foundation), so nothing needs to be installed. Extract the ZIP anywhere and double-click `start.bat`. The rest of the steps above stay the same. The firewall prompt will mention `python.exe`; allow it for private networks.
+If you don't have Python installed, download **[AirDrop-Windows.zip](https://github.com/chose-sm/AirDrop_windows/releases/latest/download/AirDrop-Windows.zip)**. The link always points to the latest version (see [Releases](https://github.com/chose-sm/AirDrop_windows/releases) for the changelog). It includes the official portable Python from python.org (digitally signed by the Python Software Foundation), so nothing needs to be installed. Extract the ZIP anywhere and double-click `start.bat`. The rest of the steps above stay the same. The firewall prompt will mention `python.exe`; allow it for private networks.
 
 To build the package yourself: `powershell -ExecutionPolicy Bypass -File build_release.ps1 -Version 1.0.0`. The ZIP is created in the `dist` folder.
 
